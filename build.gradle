@@ -1,0 +1,16 @@
+plugins {
+  id 'java'
+  id 'application'
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+mainClassName = "se.soy.${project.name.toLowerCase()}.App"
+version = "1.0.0-SNAPSHOT"
