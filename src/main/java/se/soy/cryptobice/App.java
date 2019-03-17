@@ -34,10 +34,6 @@ public class App {
     KeyStore.ProtectionParameter protParam =
       new KeyStore.PasswordProtection("1234".toCharArray());
 
-    /*
-       SecretKeySpec signingKey =
-       new SecretKeySpec("0123456789ABCDEF".getBytes(), "AES");
-       */
     KeyGenerator kg = KeyGenerator.getInstance("AES");
     kg.init(128);
     SecretKey signingKey = kg.generateKey();
@@ -48,13 +44,7 @@ public class App {
 
     keyStore.setEntry("AA", skEntry, protParam);
 
-    /*
-       SecretKeySpec secretKeySpec = new SecretKeySpec("0123456789ABCDEF".getBytes(), "AES");
-       Key key = new SecretKeySpec(secretKeySpec.getEncoded(), "AES");
-       keyStore.setKeyEntry("AA", key, "1234".toCharArray(), null);
-       */
-
-    keyStore.store(null); //this gives me the exception.
+    keyStore.store(null);
 
     Cipher aesCipher = Cipher.getInstance("AES");
     aesCipher.init(Cipher.ENCRYPT_MODE, signingKey);
