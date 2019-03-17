@@ -24,10 +24,6 @@ public class App {
     // Set up the Sun PKCS 11 provider
     Provider p = new SunPKCS11(configName);
 
-    if (-1 == Security.addProvider(p)) {
-      throw new RuntimeException("could not add security provider");
-    }
-
     // Load the key store
     char[] pin = "1234".toCharArray();
     KeyStore keyStore = KeyStore.getInstance("PKCS11", p);
