@@ -11,6 +11,10 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.Cipher;
 import sun.security.pkcs11.SunPKCS11;
 import sun.misc.BASE64Encoder; // FIXME
+/*
+https://community.oracle.com/thread/2583861
+https://docs.oracle.com/javase/9/security/pkcs11-reference-guide1.htm
+*/
 
 public class App {
   public static void main(String[] args) throws Exception {
