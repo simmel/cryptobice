@@ -11,6 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.Cipher;
 import sun.security.pkcs11.SunPKCS11;
 import sun.misc.BASE64Encoder; // FIXME
+import java.io.InputStream;
 /*
 https://community.oracle.com/thread/2583861
 https://docs.oracle.com/javase/9/security/pkcs11-reference-guide1.htm
@@ -18,11 +19,9 @@ https://docs.oracle.com/javase/9/security/pkcs11-reference-guide1.htm
 
 public class App {
   public static void main(String[] args) throws Exception {
+    InputStream configName = App.class.getClassLoader().getResourceAsStream("softhsm2.cfg");
+
     // Set up the Sun PKCS 11 provider
-    // String configName = "Z:\\SOFTHSM_INSTALL\\etc\\softhsm2.conf";
-
-    String configName = "/root/softhsm2.cfg";
-
     Provider p = new SunPKCS11(configName);
 
     if (-1 == Security.addProvider(p)) {
