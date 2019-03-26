@@ -36,7 +36,7 @@ public class App {
     KeyStore.ProtectionParameter protParam =
       new KeyStore.PasswordProtection("1234".toCharArray());
 
-    KeyGenerator kg = KeyGenerator.getInstance("AES");
+    KeyGenerator kg = KeyGenerator.getInstance("AES", p);
     kg.init(128);
     SecretKey signingKey = kg.generateKey();
     System.out.println(signingKey);
@@ -48,7 +48,7 @@ public class App {
 
     keyStore.store(null);
 
-    Cipher aesCipher = Cipher.getInstance("AES");
+    Cipher aesCipher = Cipher.getInstance("AES", p);
     aesCipher.init(Cipher.ENCRYPT_MODE, signingKey);
 
     String strDataToEncrypt = "Hello World of Encryption using AES";
