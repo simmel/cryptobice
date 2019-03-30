@@ -8,6 +8,7 @@ import java.security.KeyStore.SecretKeyEntry;
 import javax.crypto.SecretKey;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.spec.PBEParameterSpec;
 import javax.crypto.Cipher;
 import sun.security.pkcs11.SunPKCS11;
 import sun.misc.BASE64Encoder; // FIXME
@@ -33,8 +34,17 @@ public class App {
     keyStore.load(null, pin);
 
     // AES key
+    byte[] salt = "lol".getBytes();
+
     KeyStore.ProtectionParameter protParam =
-      new KeyStore.PasswordProtection("1234".toCharArray());
+      new KeyStore.PasswordProtection(
+          "1234".toCharArray(),
+          "PBKDF2WithHmacSHA512",
+          new PBEParameterSpec(
+            salt,
+            100_000_000
+            )
+          );
 
     KeyGenerator kg = KeyGenerator.getInstance("AES", p);
     kg.init(128);
