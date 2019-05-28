@@ -52,7 +52,7 @@ public class App {
           );
 
     KeyGenerator kg = KeyGenerator.getInstance("AES", p);
-    kg.init(128);
+    kg.init(128, secureRandom);
     SecretKey signingKey = kg.generateKey();
     System.out.println(signingKey);
 
@@ -64,7 +64,7 @@ public class App {
     keyStore.store(null);
 
     Cipher aesCipher = Cipher.getInstance("AES", p);
-    aesCipher.init(Cipher.ENCRYPT_MODE, signingKey);
+    aesCipher.init(Cipher.ENCRYPT_MODE, signingKey, secureRandom);
 
     String strDataToEncrypt = "Hello World of Encryption using AES";
     byte[] byteCipherText = aesCipher.doFinal(strDataToEncrypt.getBytes());
@@ -74,7 +74,7 @@ public class App {
     SecretKey secretKey = secretKeyEntry.getSecretKey();
     System.out.println(secretKey);
 
-    aesCipher.init(Cipher.DECRYPT_MODE,secretKey,aesCipher.getParameters());
+    aesCipher.init(Cipher.DECRYPT_MODE, secretKey, aesCipher.getParameters(), secureRandom);
     byte[] byteDecryptedText = aesCipher.doFinal(byteCipherText);
     String strDecryptedText = new String(byteDecryptedText);
     System.out.println("Decrypted Text message is " + strDecryptedText);
