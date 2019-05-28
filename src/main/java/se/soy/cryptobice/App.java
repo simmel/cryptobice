@@ -38,7 +38,8 @@ public class App {
     SecureRandom secureRandom = new SecureRandom().getInstance("NativePRNGNonBlocking");
 
     // AES key
-    byte[] salt = "lol".getBytes();
+    byte[] salt = new byte[64];
+    secureRandom.nextBytes(salt);
 
     KeyStore.ProtectionParameter protParam =
       new KeyStore.PasswordProtection(
