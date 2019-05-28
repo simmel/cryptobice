@@ -1,4 +1,4 @@
-// vim: bg=dark sw=2
+// vim: bg=dark sw=2 et
 package se.soy.cryptobice;
 import java.security.Key;
 import java.security.KeyStore;
