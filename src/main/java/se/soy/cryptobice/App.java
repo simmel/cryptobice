@@ -3,6 +3,7 @@ package se.soy.cryptobice;
 import java.security.Key;
 import java.security.KeyStore;
 import java.security.Provider;
+import java.security.SecureRandom;
 import java.security.Security;
 import java.security.KeyStore.SecretKeyEntry;
 import javax.crypto.SecretKey;
@@ -32,6 +33,9 @@ public class App {
     char[] pin = "1234".toCharArray();
     KeyStore keyStore = KeyStore.getInstance("PKCS11", p);
     keyStore.load(null, pin);
+
+    // Instantiate SecureRandom
+    SecureRandom secureRandom = new SecureRandom().getInstance("NativePRNGNonBlocking");
 
     // AES key
     byte[] salt = "lol".getBytes();
